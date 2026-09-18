@@ -1,6 +1,7 @@
 // pages/index.js
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+
 const AVAILABLE_MODELS = [
   'Claude Sonnet 4.5',
   'Claude Haiku 4.5',
@@ -37,7 +38,6 @@ export default function Home() {
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    // Load configs from localStorage
     const savedApiConfig = localStorage.getItem('apiConfig');
     const savedDiscordConfig = localStorage.getItem('discordConfig');
     if (savedApiConfig) setApiConfig(JSON.parse(savedApiConfig));
@@ -229,65 +229,62 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
-      {/* SIDEBAR */}
-      <div className={styles.sidebar}>
-        <div className={styles.sidebarHeader}>
+    <div className="container">
+      <div className="sidebar">
+        <div className="sidebarHeader">
           <h2>🔍 AI Research</h2>
         </div>
 
         <button 
-          className={styles.newResearchBtn}
+          className="newResearchBtn"
           onClick={handleNewResearch}
         >
           + New Research
         </button>
 
-        {/* API CONFIGURATION */}
-        <div className={styles.settingSection}>
-          <div className={styles.settingSectionTitle}>⚙️ API Configuration</div>
+        <div className="settingSection">
+          <div className="settingSectionTitle">⚙️ API Configuration</div>
           
-          <div className={styles.settingGroup}>
-            <label className={styles.settingLabel}>OpenRouter API Key</label>
+          <div className="settingGroup">
+            <label className="settingLabel">OpenRouter API Key</label>
             <input
               type="password"
               value={apiConfig.openrouterKey}
               onChange={(e) => setApiConfig({...apiConfig, openrouterKey: e.target.value})}
-              className={styles.settingInput}
+              className="settingInput"
               placeholder="sk-or-..."
             />
           </div>
 
-          <div className={styles.settingGroup}>
-            <label className={styles.settingLabel}>Serper.dev API Key</label>
+          <div className="settingGroup">
+            <label className="settingLabel">Serper.dev API Key</label>
             <input
               type="password"
               value={apiConfig.serperKey}
               onChange={(e) => setApiConfig({...apiConfig, serperKey: e.target.value})}
-              className={styles.settingInput}
+              className="settingInput"
               placeholder="Your Serper key..."
             />
           </div>
 
           <button 
-            className={styles.settingButton}
+            className="settingButton"
             onClick={saveApiConfig}
           >
             Save Configuration
           </button>
         </div>
 
-        <div className={styles.divider}></div>
+        <div className="divider"></div>
 
-        {/* AI MODEL SELECTION */}
-        <div className={styles.settingSection}>
-          <div className={styles.settingSectionTitle}>🤖 AI Model</div>
+        <div className="settingSection">
+          <div className="settingSectionTitle">🤖 AI Model</div>
           
-          <div className={styles.settingGroup}>
+          <div className="settingGroup">
             <select 
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
-              className={styles.settingSelect}
+              className="settingSelect"
             >
               {AVAILABLE_MODELS.map(model => (
                 <option key={model} value={model}>
@@ -298,65 +295,64 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.divider}></div>
+        <div className="divider"></div>
 
-        {/* DISCORD INTEGRATION */}
-        <div className={styles.settingSection}>
-          <div className={styles.settingSectionTitle}>💬 Discord Integration</div>
+        <div className="settingSection">
+          <div className="settingSectionTitle">💬 Discord Integration</div>
           <p style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '12px' }}>
             Auto-send reports to your configured channel
           </p>
 
-          <div className={styles.settingGroup}>
-            <label className={styles.settingLabel}>Bot Token</label>
+          <div className="settingGroup">
+            <label className="settingLabel">Bot Token</label>
             <input
               type="password"
               value={discordConfig.botToken}
               onChange={(e) => setDiscordConfig({...discordConfig, botToken: e.target.value})}
-              className={styles.settingInput}
+              className="settingInput"
               placeholder="Your Discord bot token..."
             />
           </div>
 
-          <div className={styles.settingGroup}>
-            <label className={styles.settingLabel}>Channel ID</label>
+          <div className="settingGroup">
+            <label className="settingLabel">Channel ID</label>
             <input
               type="text"
               value={discordConfig.channelId}
               onChange={(e) => setDiscordConfig({...discordConfig, channelId: e.target.value})}
-              className={styles.settingInput}
+              className="settingInput"
               placeholder="Your Discord channel ID..."
             />
           </div>
 
-          <div className={styles.divider}></div>
+          <div className="divider"></div>
 
-          <div className={styles.settingSectionTitle}>👤 Applicant Details</div>
+          <div className="settingSectionTitle">👤 Applicant Details</div>
 
-          <div className={styles.settingGroup}>
-            <label className={styles.settingLabel}>Full Name</label>
+          <div className="settingGroup">
+            <label className="settingLabel">Full Name</label>
             <input
               type="text"
               value={discordConfig.applicantName}
               onChange={(e) => setDiscordConfig({...discordConfig, applicantName: e.target.value})}
-              className={styles.settingInput}
+              className="settingInput"
               placeholder="Your name..."
             />
           </div>
 
-          <div className={styles.settingGroup}>
-            <label className={styles.settingLabel}>Email Address</label>
+          <div className="settingGroup">
+            <label className="settingLabel">Email Address</label>
             <input
               type="email"
               value={discordConfig.applicantEmail}
               onChange={(e) => setDiscordConfig({...discordConfig, applicantEmail: e.target.value})}
-              className={styles.settingInput}
+              className="settingInput"
               placeholder="your.email@example.com"
             />
           </div>
 
           <button 
-            className={styles.settingButton}
+            className="settingButton"
             onClick={saveDiscordConfig}
           >
             Save Discord Config
@@ -364,38 +360,35 @@ export default function Home() {
         </div>
       </div>
 
-      {/* MAIN CONTENT */}
-      <div className={styles.mainContent}>
-        {/* HEADER */}
-        <div className={styles.header}>
-          <div className={styles.headerTop}>
-            <div className={styles.headerTitle}>
+      <div className="mainContent">
+        <div className="header">
+          <div className="headerTop">
+            <div className="headerTitle">
               <h1>Company Research</h1>
-              <span className={styles.liveBadge}>LIVE</span>
+              <span className="liveBadge">LIVE</span>
             </div>
           </div>
 
-          <div className={styles.headerSubtitle}>
+          <div className="headerSubtitle">
             <h2>🤖 AI-Powered Intelligence</h2>
           </div>
 
           {messages.length === 0 && (
             <>
-              <p className={styles.headerDesc}>
+              <p className="headerDesc">
                 Know any company in minutes. Enter a company name or website URL to get AI-powered insights, competitor analysis, pain points, and a professional PDF report.
               </p>
-              <p className={styles.hint}>
+              <p className="hint">
                 💡 Configure API keys in the sidebar to get started
               </p>
             </>
           )}
         </div>
 
-        {/* CHAT */}
-        <div className={styles.chatContainer}>
+        <div className="chatContainer">
           {messages.map((message) => (
-            <div key={message.id} className={`${styles.message} ${styles[message.type]}`}>
-              <div className={styles.messageContent}>
+            <div key={message.id} className={`message ${message.type}`}>
+              <div className="messageContent">
                 {message.content.split('\n').map((line, idx) => (
                   <div key={idx} style={{ marginBottom: '4px' }}>
                     {line.split('**').map((part, i) => 
@@ -408,9 +401,9 @@ export default function Home() {
           ))}
 
           {loading && (
-            <div className={`${styles.message} ${styles.system}`}>
-              <div className={styles.messageContent}>
-                <span className={styles.spinner}></span> Researching company...
+            <div className="message system">
+              <div className="messageContent">
+                <span className="spinner"></span> Researching company...
               </div>
             </div>
           )}
@@ -418,22 +411,21 @@ export default function Home() {
           <div ref={chatEndRef} />
         </div>
 
-        {/* INPUT AREA */}
-        <div className={styles.inputArea}>
-          <div className={styles.inputWrapper}>
+        <div className="inputArea">
+          <div className="inputWrapper">
             <textarea
               ref={textareaRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Enter a company name or website URL (e.g., 'Apple' or 'apple.com')"
-              className={styles.input}
+              className="input"
               disabled={loading}
               rows={1}
               style={{ minHeight: '44px', maxHeight: '100px', resize: 'none' }}
             />
             <button
-              className={styles.primaryBtn}
+              className="primaryBtn"
               onClick={handleSearch}
               disabled={loading || !input.trim()}
             >
@@ -442,15 +434,15 @@ export default function Home() {
           </div>
 
           {currentReport && (
-            <div className={styles.actionButtons}>
+            <div className="actionButtons">
               <button
-                className={styles.secondaryBtn}
+                className="secondaryBtn"
                 onClick={handleDownloadPDF}
               >
                 📥 Download PDF
               </button>
               <button
-                className={styles.discordBtn}
+                className="discordBtn"
                 onClick={handleSendToDiscord}
               >
                 💬 Send to Discord
