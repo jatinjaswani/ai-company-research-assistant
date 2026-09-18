@@ -1,8 +1,6 @@
 // pages/index.js
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import styles from '../styles/globals.css'
-
 const AVAILABLE_MODELS = [
   'Claude Sonnet 4.5',
   'Claude Haiku 4.5',
